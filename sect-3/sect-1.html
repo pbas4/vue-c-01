@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <p v-if="show">You can see me!</p>
+    <p v-else>Now you see me</p>
+    <template v-if="show">
+      <p>Inside template</p>
+    </template>
+    <p>Do you also see me</p>
+    <button @click="show = !show">Switch</button>
+    <hr>
+
+    <p v-show="show">I'm shown</p>
+    <hr>
+
+    <h2>List</h2>
+    <ul>
+      <li v-for="(ingr, i) in ingredients" :key="ingr">{{ ingr }} ({{ i + 1 }})</li>
+    </ul>
+    <button @click="ingredients.push('spices')">Add New</button>
+    <hr>
+
+    <span v-for="n in 10">{{ n }}</span>
+    <hr>
+
+    <ul>
+      <li v-for="p in persons">
+        <div v-for="(value, key, index) in p">{{ key }}: {{ value }} ({{ index }})</div>
+      </li>
+    </ul>
+    <hr>
+
+    <template v-for="(ingr, index) in ingredients">
+      <h3>{{ ingr }} <span>{{ index }}</span></h3>
+    </template>
+
+  </div>
+
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        show: true,
+        ingredients: ['meat', 'fruit', 'cookies'],
+        persons: [
+          {name: 'Max', age: 27, color: 'tomato'},
+          {name: 'Anna', age: 'unknown', color: 'lightblue'}
+        ]
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app2">
+    <h1>{{ title }}</h1>
+    <button @click="title = 'Changed'">Update Title</button>
+    <button @click="destroy()">Destroy</button>
+  </div>
+
+
+  <div id="app" v-if="false">
+    <h1>Change $refs</h1>
+    <div style="width:100px; height:100px;" :style="{backgroundColor: myColor}"></div>
+    <button @click="myColor = 'tomato'; refChange()" ref="myButton">Change $refs state</button>
+    <hr>
+
+    <hello></hello>
+    <hello></hello>
+    <hello></hello>
+  </div>
+
+
+
+  <script>
+
+    new Vue({
+      el: '#app2',
+      data: {
+        title: 'The VueJS Instance'
+      },
+      beforeCreate: function() {
+        console.log('beforeCreate()')
+      },
+      created: function() {
+        console.log('created()')
+      },
+      beforeMount: function() {
+        console.log('beforeMount()')
+      },
+      mounted: function() {
+        console.log('mounted()')
+      },
+      beforeUpdate: function() {
+        console.log('beforeUpdate()')
+      },
+      updated: function() {
+        console.log('updated()')
+      },
+      beforeDestroy: function() {
+        console.log('beforeDestroy()')
+      },
+      destroyed: function() {
+        console.log('destroyed()')
+      },
+      methods: {
+        destroy: function() {
+          this.$destroy()
+        }
+      }
+    })
+
+    // Reusable component (basic 'wrong' use)
+    Vue.component('hello', {
+      template: '<h1>Hello!</h1>'
+    })
+
+    new Vue({
+      el: '#app',
+      data: {
+        myColor: 'lightblue'
+      },
+      methods: {
+        refChange: function() {
+          console.log(this.$refs)
+          this.$refs.myButton.innerText = 'State changed!'
+          console.log(this.$refs)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
