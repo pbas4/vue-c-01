@@ -2,7 +2,7 @@
   <div class="col-xs-12 col-sm-6">
     <ul class="list-group">
       <app-server
-        :key="server.id" 
+        :key="server.id"
         v-for="server in servers"
         :server="server">
       </app-server>
@@ -12,9 +12,8 @@
 </template>
 
 <script>
-  import { eventBus } from '../../main'
   import Server from './Server.vue'
-
+  
   export default {
     data: function() {
       return {
@@ -25,9 +24,6 @@
           { id: 4, status: 'Normal', name: 'Server' }
         ]
       }
-    },
-    methods: {
-
     },
     components: {
       appServer: Server
