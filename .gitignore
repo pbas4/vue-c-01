@@ -1,0 +1,9 @@
+# Hiddens
+.idea
+.sonarlint
+.nyc_output
+.vscode
+
+# application
+node_modules
+sonarlint.json
