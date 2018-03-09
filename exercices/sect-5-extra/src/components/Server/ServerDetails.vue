@@ -3,7 +3,7 @@
         <p v-if="!server">Please Select Server</p>
         <p v-else>{{ server.name }} #{{ server.id }} => Status: {{ server.status }}</p>
         <button :disabled="!server" @click="changeStatus">Change status</button>
-        <button :disabled="!server" @click="unselectServer">Change status</button>
+        <button :disabled="!server" @click="unselectServer">Unselect server</button>
     </div>
 
 </template>
@@ -27,7 +27,6 @@
         },
         created() {
             serverBus.$on('selectedServer', (server) => {
-                console.log(server)                
                 this.server = server
             });
         }
