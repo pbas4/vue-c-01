@@ -9,11 +9,17 @@ Vue.directive('highlight', {
 
     // el.style.backgroundColor = 'lightgreen'
     // el.style.backgroundColor = binding.value
-    if (binding.arg === 'background')
-      el.style.backgroundColor = binding.value
-    else
-      el.style.color = binding.value
-
+    let delay = 0;
+    if (binding.modifiers['delayed']) {
+      delay = 3000;
+    }
+    setTimeout(() => {
+      if (binding.arg === 'background')
+        el.style.backgroundColor = binding.value
+      else
+        el.style.color = binding.value
+    }, delay);
+  
   }
 })
 
